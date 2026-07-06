@@ -4,7 +4,7 @@
 <head>
     <!-- URL Canonico: dice ai motori di ricerca qual è l'unico sito ufficiale -->
     <link rel="canonical" href="https://portfoliomorenanobile.netlify.app/">
-    <link rel="icon" type="image/jpg" href="immagini_2/m2.jpg">
+    <link rel="icon" type="image/jpg" href="immagini_2/m1.jpg">
     <!-- Meta tag per le anteprime Social (Facebook, WhatsApp, LinkedIn) -->
     <meta property="og:url" content="https://portfoliomorenanobile.netlify.app/">
     <meta property="og:title" content="portfolio morena">
@@ -49,7 +49,6 @@
 
         @layer figreset {
             :root {
-                /* MODIFICATO: Impostato SF Pro Display come font principale globale */
                 --default-font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
                 font-family: var(--default-font-family)
             }
@@ -64,7 +63,6 @@
             body {
                 margin: 0;
                 width: 100%;
-                /* MODIFICATO: Forzato il font globale anche sul body */
                 font-family: var(--default-font-family);
             }
 
@@ -102,7 +100,6 @@
                 padding: 0;
                 cursor: pointer;
                 font-family: inherit;
-                /* MODIFICATO: i bottoni ereditano il font corretto */
             }
 
             h1,
@@ -299,7 +296,6 @@
         /* --- STILI DASHBOARD VERTICALE INTERFACCIA APPLE NATIVA --- */
         .widgy-unified-dashboard {
             z-index: 30;
-            /* MODIFICATO: Riordinato l'ordine dando priorità assoluta a SF Pro Display */
             font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
             display: flex;
             flex-direction: column;
@@ -307,22 +303,20 @@
             width: 338px;
         }
 
-        /* 1. OROLOGIO ORIZZONTALE SNELLO (CENTRATO) */
-
+        /* 1. OROLOGIO E DATA CONTAINER INTEGRATO */
         .apple-clock-widget.flip-clock-container {
             width: 100%;
-            height: 90px;
-            /* Leggermente più alto per accogliere il design */
             background-color: #1e1e1e !important;
-            /* Rosso vintage brillante */
             border: 4px solid #2b2b2b;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 2px 6px rgba(255, 255, 255, 0.2);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 0px;
+            padding: 14px 10px;
             box-sizing: border-box;
+            gap: 10px;
         }
 
         /* Griglia dell'orologio */
@@ -338,7 +332,6 @@
             width: 60px;
             height: 64px;
             background: #C0DF97;
-            /* Arancione retroilluminato */
             border-radius: 10px;
             box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4), 0 4px 8px rgba(0, 0, 0, 0.3);
             overflow: hidden;
@@ -366,7 +359,6 @@
             font-size: 42px;
             font-weight: 800;
             color: #1e1e1e;
-            /* Grigio scuro/Nero fumo opaco */
             line-height: 1;
             z-index: 1;
             letter-spacing: -1px;
@@ -378,7 +370,6 @@
             font-weight: 700;
             color: #ffffff;
             animation: blink 1s infinite;
-            /* Effetto lampeggiante opzionale */
         }
 
         @keyframes blink {
@@ -387,135 +378,108 @@
             }
         }
 
+        /* STILE DATA SOTTO L'OROLOGIO */
+        .apple-live-date {
+            color: #C0DF97;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            font-family: "SF Pro Display", -apple-system, sans-serif;
 
-        /* CALENDARIO RETTANGOLARE AGGIORNATO */
-        .apple-calendar-rectangle {
+        }
+
+        /* 2. NUOVO CUBOTTO GRANDE: CHI SONO WIDGET STYLE (AGGIORNATO) */
+        .apple-about-me-widget {
             width: 100%;
-            height: 156px;
+            height: 280px;
+            /* Aumentato per far entrare tutto il testo */
             background: #1e1e1e !important;
             border-radius: 15px;
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
             box-sizing: border-box;
             display: flex;
-            padding: 14px 18px;
+            align-items: flex-start;
+            /* Allinea gli elementi in alto */
+            padding: 16px;
             gap: 16px;
         }
 
-        .cal-left-panel {
+        /* Colonna di sinistra: Foto + Info Brevi */
+        .about-widget-left-col {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            width: 110px;
+            gap: 10px;
             flex-shrink: 0;
-            height: 100%;
-            padding-right: 4px;
+            width: 100px;
         }
 
-        .cal-left-panel .cal-header-month {
-            font-size: 20px;
-            font-weight: 700 !important;
-            font-style: normal;
-            color: #C0DF97;
-            letter-spacing: 0.5px;
-            text-transform: none;
-            line-height: 1.1;
-
+        .about-widget-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #2b2b2b;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .cal-left-panel .cal-number-big {
-            font-size: 68px;
-            font-weight: 900;
-            color: #ffffff;
-            line-height: 0.85;
-            letter-spacing: -3px;
-            margin-top: -2px;
-            margin-bottom: -2px;
-        }
-
-        .cal-left-bottom-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .about-widget-pic img {
             width: 100%;
-            margin-top: 2px;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
-        .cal-left-bottom-row .cal-day-name-sub {
-            font-size: 14px;
-            font-weight: 900;
-            color: #ffffff;
-            text-transform: none;
+        /* Info brevi sotto la foto */
+        .about-widget-short-info {
+            color: #b0b0b5;
+            font-size: 12px;
+            line-height: 1.4;
+            font-weight: 500;
+            font-family: "SF Pro Display", -apple-system, sans-serif;
         }
 
-        .cal-left-bottom-row .cal-weather-info {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 14px;
+        .about-widget-short-info span {
+            display: block;
+            color: #C0DF97;
             font-weight: 600;
-            color: #ffffff;
+            margin-bottom: 2px;
         }
 
-        .cal-left-bottom-row .cal-weather-info svg {
-            width: 16px;
-            height: 16px;
-            fill: #ffe148;
-        }
-
-        .cal-right-panel {
-            flex-grow: 1;
+        /* Colonna di destra: Testi principali */
+        .about-widget-text {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            gap: 4px;
+            color: #ffffff;
+            font-family: "SF Pro Display", -apple-system, sans-serif;
             height: 100%;
+            justify-content: flex-start;
         }
 
-        .cal-grid-weekdays {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            text-align: center;
-            border-bottom: 1px solid #727276;
-            padding-bottom: 4px;
-        }
-
-        .cal-grid-weekdays span {
-            font-size: 15px;
-            font-weight: 900;
-            color: #ffffff;
-        }
-
-        .cal-grid-days {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            grid-template-rows: repeat(5, 1fr);
-            gap: 3px 0;
-            text-align: center;
-            align-items: center;
-            flex-grow: 1;
-            padding-top: 4px;
-        }
-
-        .cal-grid-days span {
-            font-size: 11px;
+        .about-widget-text h3 {
+            margin: 0;
+            font-size: 18px;
             font-weight: 700;
-            color: #727276;
-            height: 18px;
-            width: 18px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-        }
-
-        .cal-grid-days span.current-month-day {
             color: #ffffff;
+            letter-spacing: 0.2px;
         }
 
-        .cal-grid-days span.active-today-circle {
-            background-color: #C0DF97;
-            color: #1e1e1e !important;
-            border-radius: 50%;
-            font-weight: 700;
+        .about-widget-text .role {
+            margin: 0;
+            font-size: 13px;
+            color: #C0DF97;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+
+        .about-widget-text .bio-desc {
+            margin: 0;
+            font-size: 12px;
+            /* Leggermente ottimizzato per la leggibilità */
+            color: #e1e1e6;
+            line-height: 1.4;
+            font-weight: 400;
         }
 
         /* 3. SPOTIFY SECTION */
@@ -529,35 +493,6 @@
             border: none;
             display: block;
             border-radius: 15px !important;
-        }
-
-        /* 4. NUOVA SEZIONE ADDIZIONALE: ZONA DUE QUADRATI FOTO AFFIANCATI */
-        .widgy-images-row {
-            display: flex;
-            gap: 16px;
-            width: 100%;
-        }
-
-        .widgy-square-widget {
-            flex: 1;
-            aspect-ratio: 1 / 1;
-            background-color: rgba(30, 30, 30, 0.65) !important;
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .widgy-square-widget img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
         }
 
         /* FINESTRE DI SISTEMA */
@@ -648,7 +583,6 @@
             width: 100%;
             text-align: center;
             color: #4a4a4a;
-            /* MODIFICATO: Forzato SF Pro Display anche nel titolo delle finestre stile Mac */
             font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
             font-size: 14px;
             font-weight: 700;
@@ -699,10 +633,11 @@
             <img alt="Menu bar" src="immagini_2/menu_bar.webp" class="css-86reuw css-trglf0"
                 style="width: 100%; height: 24px; display: block;">
 
+
             <div class="widgy-unified-dashboard" style="position: absolute; top: 60px; left: 40px;">
 
+                <!-- 1. WIDGET OROLOGIO E DATA IN TEMPO REALE -->
                 <div class="apple-clock-widget flip-clock-container">
-
                     <div class="flip-clock">
                         <div class="flip-card">
                             <div class="flip-card-inner" id="flip-hours">00</div>
@@ -716,35 +651,73 @@
                             <div class="flip-card-inner" id="flip-seconds">00</div>
                         </div>
                     </div>
+                    <!-- Elemento data dinamica aggiunto -->
+                    <div class="apple-live-date" id="apple-live-date-display">Caricamento data...</div>
                 </div>
 
-                <div class="apple-calendar-rectangle">
-                    <div class="cal-left-panel">
-                        <div class="cal-header-month" id="cal-month-left"><strong>Luglio</strong></div>
-                        <div class="cal-number-big" id="cal-day-left">5</div>
-                        <div class="cal-left-bottom-row">
-                            <div class="cal-day-name-sub" id="cal-dayname-left">domenica</div>
-                            <div class="cal-weather-info">
-                                <svg viewBox="0 0 24 24">
-                                    <circle cx="12" cy="12" r="5" />
-                                    <path
-                                        d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
-                                        stroke="#ff9500" stroke-width="2" stroke-linecap="round" />
-                                </svg>
-                                <span>24°</span>
+                <!-- 2. CUBOTTO GRANDE: CHI SONO (CON CTA CENTRATA E CORRETTA DENTRO IL BOX) -->
+                <div class="apple-about-me-widget"
+                    style="height: 280px; display: flex; flex-direction: column; justify-content: space-between; padding: 16px; box-sizing: border-box; background: #1e1e1e !important; border-radius: 15px;">
+
+                    <!-- Parte Alta: Foto a sinistra e Biografia a destra -->
+                    <div style="display: flex; gap: 16px; align-items: flex-start; flex-grow: 1;">
+
+                        <!-- Sotto-colonna Sinistra: Foto + Info Utili -->
+                        <div style="width: 100px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px;">
+                            <div class="about-widget-pic"
+                                style="width: 100px; height: 100px; border-radius: 12px; overflow: hidden; background: #2b2b2b; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <img src="immagini_2/m2.jpg" alt="Morena Nobile"
+                                    style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                            </div>
+                            <div class="about-widget-short-info"
+                                style="color: #dadada; font-size: 11px; line-height: 1.4; font-weight: 500; font-family: 'SF Pro Display', sans-serif;">
+                                <span
+                                    style="display: block; color: #C0DF97; font-weight: 600; margin-bottom: 2px;">info</span>
+                                - book lover<br>
+                                - san francesco<br>
+                                - basketball player
                             </div>
                         </div>
+
+                        <!-- Sotto-colonna Destra: Nome e Testo Biografia -->
+                        <div
+                            style="display: flex; flex-direction: column; gap: 4px; color: #ffffff; font-family: 'SF Pro Display', sans-serif;">
+                            <h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: 0.2px;">Morena
+                                Nobile</h3>
+                            <p class="role"
+                                style="margin: 0 0 4px 0; color: #C0DF97; font-size: 13px; font-weight: 600; line-height: 1.2;">
+                                Junior UX/UI Designer</p>
+                            <p class="bio-desc"
+                                style="margin: 0; font-size: 11.5px; color: #e1e1e6; line-height: 1.4; text-align: left;">
+                                Benvenuti nel mio mondo. <br>Progetto interfacce digitali analizzando la psicologia e i
+                                comportamenti delle persone, per trasformare problemi complessi in soluzioni semplici e
+                                accessibili. <br>Curiosi di vedere i risultati?<br> Esplorate le cartelle dei miei
+                                progetti sul
+                                desktop
+                            </p>
+                        </div>
+
                     </div>
 
-                    <div class="cal-right-panel">
-                        <div class="cal-grid-weekdays">
-                            <span>L</span><span>M</span><span>M</span><span>G</span><span>V</span><span>S</span><span>D</span>
-                        </div>
-                        <div class="cal-grid-days" id="cal-days-grid">
-                        </div>
+                    <!-- Parte Bassa: Centrata e blindata DENTRO il rettangolo nero -->
+                    <div
+                        style="width: 100%; font-family: 'SF Pro Display', sans-serif; padding-top: 4px; flex-shrink: 0;">
+                        <p class="cta-notes"
+                            style="margin: 0; color: #ffffff; font-size: 11px; font-weight: 600; line-height: 1.2; text-align: center;">
+                            * per info serie cliccare su about me *
+                        </p>
                     </div>
+
                 </div>
 
+                <!-- 4. NUOVO WIDGET FOTOGRAFICO (SOTTO SPOTIFY) -->
+                <div class="apple-photo-widget"
+                    style="width: 100%; height: 110px; background: #1e1e1e !important; border-radius: 15px; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12); box-sizing: border-box; overflow: hidden;">
+                    <img src="immagini_2/c.jpg" alt="Foto Widget"
+                        style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+
+                <!-- 3. RETTANGOLO SPOTIFY (Invariato) -->
                 <div class="widgy-spotify-section">
                     <iframe id="spotify-player" data-testid="embed-iframe" style="border-radius:24px" width="100%"
                         height="152" frameBorder="0" allowfullscreen=""
@@ -753,14 +726,6 @@
                     </iframe>
                 </div>
 
-                <div class="widgy-images-row">
-                    <div class="widgy-square-widget">
-                        <img src="immagini_2/m1.jpg">
-                    </div>
-                    <div class="widgy-square-widget">
-                        <img src="immagini_2/s3.jpg">
-                    </div>
-                </div>
 
             </div>
 
@@ -776,7 +741,7 @@
         <audio id="main-audio-player"></audio>
     </div>
 
-    <!-- LE ICONE E I MODALI SOTTOSTANTI EREDITERANNO AUTOMATICAMENTE IL FONT DAL :ROOT/BODY -->
+    <!-- SEZIONE ICONE DESKTOP -->
     <div class="desktop-icon" style="top: 230px; left: 600px;" onclick="apriFinestra('modal-homizy')">
         <img src="immagini_2/cartella.png" alt="homizy">
         <span>homizy</span>
@@ -807,11 +772,8 @@
         <span>earthviaggi</span>
     </div>
 
-    <!--<div class="desktop-icon" style="top: 500px; right: 400px;" onclick="apriFinestra('modal-teatroarcimboldi')">
-        <img src="immagini_2/cartella2.png" alt="Note">
-        <span>teatro arcimboldi</span>
-    </div>>-->
 
+    <!-- SEZIONE FINESTRE POPUP (MODALI) -->
     <div id="modal-aboutme" class="modal-overlay" onclick="chiudiFinestra('modal-aboutme')">
         <div class="mac-window" onclick="event.stopPropagation()">
             <div class="mac-header">
@@ -922,71 +884,10 @@
         </div>
     </div>
 
-    <!--<div id="modal-teatroarcimboldi" class="modal-overlay" onclick="chiudiFinestra('modal-teatroarcimboldi')">
-        <div class="mac-window fit-folder" onclick="event.stopPropagation()">
-            <div class="mac-header">
-                <div class="mac-buttons">
-                    <button class="mac-btn red" onclick="chiudiFinestra('modal-teatroarcimboldi')"></button>
-                    <button class="mac-btn yellow"></button>
-                    <button class="mac-btn green"></button>
-                </div>
-                <div class="mac-title">teatro arcimboldi</div>
-            </div>
-            <div class="mac-content">
-                <img src="immagini_2/19.webp" alt="Teatroarcimboldi">
-                <img src="immagini_2/20.webp" alt="Teatroarcimboldi">
-                <img src="immagini_2/21.webp" alt="Teatroarcimboldi">
-                <img src="immagini_2/22.webp" alt="Teatroarcimboldi">
-                <img src="immagini_2/23.webp" alt="Teatroarcimboldi">
-                <img src="immagini_2/24.webp" alt="Teatroarcimboldi">
-            </div>
-        </div>
-    </div>-->
+
 
     <script>
-        function generaGrigliaCalendario(dataAttuale) {
-            const gridContainer = document.getElementById('cal-days-grid');
-            if (!gridContainer) return;
-            gridContainer.innerHTML = '';
-
-            const anno = dataAttuale.getFullYear();
-            const mese = dataAttuale.getMonth();
-            const oggi = dataAttuale.getDate();
-
-            const primoGiornoMese = new Date(anno, mese, 1);
-            let giornoSettimanaInizio = primoGiornoMese.getDay() - 1;
-            if (giornoSettimanaInizio === -1) giornoSettimanaInizio = 6;
-
-            const totaleGiorniMese = new Date(anno, mese + 1, 0).getDate();
-            const totaleGiorniMesePrecedente = new Date(anno, mese, 0).getDate();
-
-            for (let i = giornoSettimanaInizio - 1; i >= 0; i--) {
-                const span = document.createElement('span');
-                span.textContent = totaleGiorniMesePrecedente - i;
-                gridContainer.appendChild(span);
-            }
-
-            for (let giorno = 1; giorno <= totaleGiorniMese; giorno++) {
-                const span = document.createElement('span');
-                span.textContent = giorno;
-                span.classList.add('current-month-day');
-
-                if (giorno === oggi) {
-                    span.classList.add('active-today-circle');
-                }
-                gridContainer.appendChild(span);
-            }
-
-            const celleTotali = gridContainer.children.length;
-            const celleMancanti = celleTotali <= 35 ? 35 - celleTotali : 42 - celleTotali;
-            for (let giornoSuccessivo = 1; giornoSuccessivo <= celleMancanti; giornoSuccessivo++) {
-                const span = document.createElement('span');
-                span.textContent = giornoSuccessivo;
-                gridContainer.appendChild(span);
-            }
-        }
-
-        function aggiornaTempo() {
+        function aggiornaTempoEData() {
             const oraAttuale = new Date();
 
             let ore = String(oraAttuale.getHours()).padStart(2, '0');
@@ -1002,22 +903,20 @@
             if (pMinutes) pMinutes.textContent = minutes;
             if (pSeconds) pSeconds.textContent = secondi;
 
-            // ... Lascia invariato tutto il codice sottostante riguardante il calendario ...
-            let opzioniMese = { month: 'long' };
-            let opzioniNomeGiorno = { weekday: 'long' };
-            let nomeMese = oraAttuale.toLocaleDateString('it-IT', opzioniMese);
-            let numeroGiorno = oraAttuale.getDate();
-            let nomeGiorno = oraAttuale.toLocaleDateString('it-IT', opzioniNomeGiorno);
+            // Aggiornamento della data testuale in tempo reale
+            const opzioniData = { weekday: 'long', day: 'numeric', month: 'long' };
+            let testoData = oraAttuale.toLocaleDateString('it-IT', opzioniData);
 
-            document.getElementById('cal-month-left').textContent = nomeMese;
-            document.getElementById('cal-day-left').textContent = numeroGiorno;
-            document.getElementById('cal-dayname-left').textContent = nomeGiorno.substring(0, 3) + '.';
-
-            generaGrigliaCalendario(oraAttuale);
+            // Ora il testo rimarrà nativamente in minuscolo, esattamente come restituito dall'italiano
+            const dataDisplay = document.getElementById('apple-live-date-display');
+            if (dataDisplay) {
+                dataDisplay.textContent = testoData;
+            }
         }
 
-        aggiornaTempo();
-        setInterval(aggiornaTempo, 1000);
+        // Avvia immediatamente l'orologio e impostalo ogni secondo
+        aggiornaTempoEData();
+        setInterval(aggiornaTempoEData, 1000);
 
         const canzoniSpotify = [
             "https://open.spotify.com/embed/track/6gHwnlBWIDostwWEHLwoEs?utm_source=generator&theme=0&si=4973abfdebf14f33", "https://open.spotify.com/embed/track/1BANPzYIhCQkJ1ZFq2Fb0O?utm_source=generator&theme=0&si=72f108afefdf42ec",
