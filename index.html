@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Portfolio</title>
+
+    <style id="reset-css">
+        @layer figreset, figoverridable, reset, theme, base, figutils, components, utilities;
+
+        @layer figoverridable {
+            :root {
+                font-synthesis: none
+            }
+        }
+
+        @layer figutils {
+            :root {
+                --banner-height: 48px;
+                --banner-height-v2: 40px;
+                --full-height-with-banner: calc(100dvh - var(--banner-height))
+            }
+
+            @media (max-width:600px) {
+                .banner-v2-container {
+                    left: 0 !important;
+                    right: 0 !important;
+                    margin: 0 auto !important
+                }
+            }
+
+            .wrapper-with-banner .min-h-screen {
+                min-height: var(--full-height-with-banner)
+            }
+
+            .wrapper-with-banner .h-screen {
+                height: var(--full-height-with-banner)
+            }
+        }
+
+        @layer figreset {
+            :root {
+                /* MODIFICATO: Impostato SF Pro Display come font principale globale */
+                --default-font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+                font-family: var(--default-font-family)
+            }
+
+            html {
+                -webkit-text-size-adjust: 100%;
+                -webkit-tap-highlight-color: transparent;
+                -webkit-font-smoothing: antialiased;
+                width: 100%
+            }
+
+            body {
+                margin: 0;
+                width: 100%;
+                /* MODIFICATO: Forzato il font globale anche sul body */
+                font-family: var(--default-font-family);
+            }
+
+            body:has([data-page-overflowx='hidden']) {
+                overflow-x: hidden
+            }
+
+            body:has([data-page-overflowx='auto']) {
+                overflow-x: auto
+            }
+        }
+
+        @layer figutils {
+            #container {
+                width: 100%
+            }
+        }
+
+        @layer figreset {
+
+            *,
+            *:before,
+            *:after {
+                box-sizing: border-box
+            }
+
+            a {
+                color: inherit;
+                text-decoration: none
+            }
+
+            button {
+                border: none;
+                background: none;
+                padding: 0;
+                cursor: pointer;
+                font-family: inherit;
+                /* MODIFICATO: i bottoni ereditano il font corretto */
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p {
+                font-size: inherit;
+                font-weight: inherit
+            }
+
+            blockquote,
+            dl,
+            dd,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            hr,
+            figure,
+            p,
+            pre {
+                margin: 0
+            }
+
+            ol,
+            ul,
+            menu {
+                list-style: none;
+                margin: 0;
+                padding-inline-start: 0
+            }
+        }
+
+        @layer figutils {
+            :is(.textContents ul, ul.textContents)>li:before {
+                content: '\2022';
+                margin-left: -1.5em;
+                display: inline-block;
+                text-align: center;
+                width: 1.5em;
+                -webkit-background-clip: var(--list-marker-background-clip);
+                -webkit-text-fill-color: var(--list-marker-text-fill-color);
+                background-clip: var(--list-marker-background-clip);
+                color: var(--list-marker-color);
+                font-size: var(--list-marker-font-size);
+                line-height: var(--list-marker-line-height);
+                vertical-align: var(--list-marker-vertical-align)
+            }
+
+            :is(.textContents ol, ol.textContents)>li::marker {
+                color: var(--list-marker-color);
+                font-size: var(--list-marker-font-size);
+                line-height: var(--list-marker-line-height);
+                vertical-align: var(--list-marker-vertical-align)
+            }
+
+            :is(.textContents, .textContents *).adjustLetterSpacing:after {
+                content: '';
+                margin-left: calc(var(--letter-spacing) * -1)
+            }
+        }
+
+        @layer figutils {
+            #container .embed {
+                border: none
+            }
+        }
+
+        @layer figreset {
+            :root {
+                --100dvw: 100vw;
+                --100dvh: 100vh
+            }
+
+            @supports (width:100dvw) {
+                :root {
+                    --100dvw: 100dvw;
+                    --100dvh: 100dvh
+                }
+            }
+        }
+    </style>
+
+    <style id="body-background-color">
+        body:has([data-breakpoint-id="node-0_4"]) {
+            background-color: #fff
+        }
+    </style>
+
+    <style id="ssr-css">
+        #container .css-vf8mzy {
+            position: relative;
+            display: block;
+        }
+
+        #container .css-j6ldtg {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #container .css-eacfyw {
+            --content-min-width: 100%;
+            --content-min-height: 100%;
+            overflow: visible;
+            background-color: #fff;
+        }
+
+        #container .css-ez8men {
+            max-width: 100%;
+            max-height: 100%;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+        }
+
+        #container .css-trglf0 {
+            position: absolute;
+        }
+
+        #container .css-scd4s8 {
+            object-fit: cover;
+            inset: 0px;
+            pointer-events: none;
+        }
+
+        #container .css-86reuw {
+            left: 0px;
+            right: 0px;
+            top: 0px;
+        }
+
+        #container .css-k1285g {
+            width: 564px;
+            height: 92px;
+            left: 50%;
+            top: calc(50% + 385px);
+        }
+
+        #container .css-2chd6x {
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        #container .css-roiesn {
+            position: absolute;
+            display: block;
+        }
+
+        .desktop-icon {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            text-align: center;
+            cursor: pointer;
+            user-select: none;
+            z-index: 10;
+        }
+
+        .desktop-icon img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            margin-bottom: 6px;
+            filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.3));
+            transition: transform 0.2s ease;
+        }
+
+        .desktop-icon span {
+            color: #ffffff;
+            font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8);
+            word-break: break-word;
+        }
+
+        .desktop-icon:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+        }
+
+        .desktop-icon:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- STILI DASHBOARD VERTICALE INTERFACCIA APPLE NATIVA --- */
+        .widgy-unified-dashboard {
+            z-index: 30;
+            /* MODIFICATO: Riordinato l'ordine dando priorità assoluta a SF Pro Display */
+            font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 338px;
+        }
+
+        /* 1. OROLOGIO ORIZZONTALE SNELLO (CENTRATO) */
+
+        .apple-clock-widget.flip-clock-container {
+            width: 100%;
+            height: 90px;
+            /* Leggermente più alto per accogliere il design */
+            background-color: #1e1e1e !important;
+            /* Rosso vintage brillante */
+            border: 4px solid #2b2b2b;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 2px 6px rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        /* Griglia dell'orologio */
+        .flip-clock {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Singola tessera/paletta dell'orologio */
+        .flip-card {
+            position: relative;
+            width: 60px;
+            height: 64px;
+            background: #9ac2d7;
+            /* Arancione retroilluminato */
+            border-radius: 10px;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4), 0 4px 8px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #5d7b8b;
+        }
+
+        /* Linea orizzontale centrale che taglia a metà la cifra */
+        .flip-card::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 2px;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 2;
+        }
+
+        /* Cifre stile digitale/retro */
+        .flip-card-inner {
+            font-family: "SF Pro Display", -apple-system, sans-serif;
+            font-size: 42px;
+            font-weight: 800;
+            color: #1e1e1e;
+            /* Grigio scuro/Nero fumo opaco */
+            line-height: 1;
+            z-index: 1;
+            letter-spacing: -1px;
+        }
+
+        /* Separatori dei due punti (:) */
+        .flip-separator {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffffff;
+            animation: blink 1s infinite;
+            /* Effetto lampeggiante opzionale */
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0.4;
+            }
+        }
+
+
+        /* CALENDARIO RETTANGOLARE AGGIORNATO */
+        .apple-calendar-rectangle {
+            width: 100%;
+            height: 156px;
+            background: #1e1e1e !important;
+            border-radius: 15px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+            box-sizing: border-box;
+            display: flex;
+            padding: 14px 18px;
+            gap: 16px;
+        }
+
+        .cal-left-panel {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 110px;
+            flex-shrink: 0;
+            height: 100%;
+            padding-right: 4px;
+        }
+
+        .cal-left-panel .cal-header-month {
+            font-size: 20px;
+            font-weight: 700 !important;
+            font-style: normal;
+            color: #9ac2d7;
+            letter-spacing: 0.5px;
+            text-transform: none;
+            line-height: 1.1;
+
+        }
+
+        .cal-left-panel .cal-number-big {
+            font-size: 68px;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 0.85;
+            letter-spacing: -3px;
+            margin-top: -2px;
+            margin-bottom: -2px;
+        }
+
+        .cal-left-bottom-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 2px;
+        }
+
+        .cal-left-bottom-row .cal-day-name-sub {
+            font-size: 14px;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: none;
+        }
+
+        .cal-left-bottom-row .cal-weather-info {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .cal-left-bottom-row .cal-weather-info svg {
+            width: 16px;
+            height: 16px;
+            fill: #ffe148;
+        }
+
+        .cal-right-panel {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .cal-grid-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            border-bottom: 1px solid #727276;
+            padding-bottom: 4px;
+        }
+
+        .cal-grid-weekdays span {
+            font-size: 15px;
+            font-weight: 900;
+            color: #ffffff;
+        }
+
+        .cal-grid-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 3px 0;
+            text-align: center;
+            align-items: center;
+            flex-grow: 1;
+            padding-top: 4px;
+        }
+
+        .cal-grid-days span {
+            font-size: 11px;
+            font-weight: 700;
+            color: #727276;
+            height: 18px;
+            width: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .cal-grid-days span.current-month-day {
+            color: #ffffff;
+        }
+
+        .cal-grid-days span.active-today-circle {
+            background-color: #9ac2d7;
+            color: #1e1e1e !important;
+            border-radius: 50%;
+            font-weight: 700;
+        }
+
+        /* 3. SPOTIFY SECTION */
+        .widgy-spotify-section {
+            width: 100%;
+        }
+
+        .widgy-spotify-section iframe {
+            width: 100%;
+            height: 152px !important;
+            border: none;
+            display: block;
+            border-radius: 15px !important;
+        }
+
+        /* 4. NUOVA SEZIONE ADDIZIONALE: ZONA DUE QUADRATI FOTO AFFIANCATI */
+        .widgy-images-row {
+            display: flex;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .widgy-square-widget {
+            flex: 1;
+            aspect-ratio: 1 / 1;
+            background-color: rgba(30, 30, 30, 0.65) !important;
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .widgy-square-widget img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* FINESTRE DI SISTEMA */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mac-window {
+            width: 900px;
+            max-width: 95%;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-overlay.active .mac-window {
+            transform: scale(1);
+        }
+
+        .mac-header {
+            background-color: #f6f6f6;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            position: relative;
+            border-bottom: 1px solid #dcdcdc;
+            user-select: none;
+            flex-shrink: 0;
+        }
+
+        .mac-buttons {
+            display: flex;
+            gap: 8px;
+            position: absolute;
+            left: 16px;
+        }
+
+        .mac-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+        }
+
+        .mac-btn.red {
+            background-color: #ff5f56;
+            border: 0.5px solid #e0443e;
+        }
+
+        .mac-btn.yellow {
+            background-color: #ffbd2e;
+            border: 0.5px solid #dea123;
+            cursor: default;
+        }
+
+        .mac-btn.green {
+            background-color: #27c93f;
+            border: 0.5px solid #1aab29;
+            cursor: default;
+        }
+
+        .mac-title {
+            width: 100%;
+            text-align: center;
+            color: #4a4a4a;
+            /* MODIFICATO: Forzato SF Pro Display anche nel titolo delle finestre stile Mac */
+            font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .mac-content {
+            height: 75vh;
+            overflow-y: auto;
+            background: #ffffff;
+            padding: 30px;
+            padding-top: 60px;
+            box-sizing: border-box;
+        }
+
+        .mac-content img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        #modal-patpat .mac-content {
+            padding: 60px 0px 30px 0px;
+            box-sizing: border-box;
+        }
+
+        #modal-patpat .mac-content img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        #modal-aboutme .mac-content {
+            padding-top: 20px !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div data-page-overflowx="hidden" data-breakpoint-id="node-0_4" data-breakpoint="true" data-width="1440"
+            data-height="900" class="css-vf8mzy css-j6ldtg css-eacfyw">
+
+            <img alt="Background" src="immagini_2/sfondo2.jpg" class="css-ez8men css-trglf0 css-scd4s8">
+
+            <img alt="Menu bar" src="immagini_2/menu_bar.webp" class="css-86reuw css-trglf0"
+                style="width: 100%; height: 24px; display: block;">
+
+            <div class="widgy-unified-dashboard" style="position: absolute; top: 60px; left: 40px;">
+
+                <div class="apple-clock-widget flip-clock-container">
+
+                    <div class="flip-clock">
+                        <div class="flip-card">
+                            <div class="flip-card-inner" id="flip-hours">00</div>
+                        </div>
+                        <div class="flip-separator">:</div>
+                        <div class="flip-card">
+                            <div class="flip-card-inner" id="flip-minutes">00</div>
+                        </div>
+                        <div class="flip-separator">:</div>
+                        <div class="flip-card">
+                            <div class="flip-card-inner" id="flip-seconds">00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="apple-calendar-rectangle">
+                    <div class="cal-left-panel">
+                        <div class="cal-header-month" id="cal-month-left"><strong>Luglio</strong></div>
+                        <div class="cal-number-big" id="cal-day-left">5</div>
+                        <div class="cal-left-bottom-row">
+                            <div class="cal-day-name-sub" id="cal-dayname-left">domenica</div>
+                            <div class="cal-weather-info">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="5" />
+                                    <path
+                                        d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+                                        stroke="#ff9500" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                                <span>24°</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cal-right-panel">
+                        <div class="cal-grid-weekdays">
+                            <span>L</span><span>M</span><span>M</span><span>G</span><span>V</span><span>S</span><span>D</span>
+                        </div>
+                        <div class="cal-grid-days" id="cal-days-grid">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="widgy-spotify-section">
+                    <iframe id="spotify-player" data-testid="embed-iframe" style="border-radius:24px" width="100%"
+                        height="152" frameBorder="0" allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy">
+                    </iframe>
+                </div>
+
+                <div class="widgy-images-row">
+                    <div class="widgy-square-widget">
+                        <img src="immagini_2/m1.jpg">
+                    </div>
+                    <div class="widgy-square-widget">
+                        <img src="immagini_2/s3.jpg">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="css-k1285g css-2chd6x css-roiesn"
+                style="top: calc(50% + 360px); left: 50%; transform: translate(-50%, -50%); z-index: 40;">
+                <div style="background: transparent; backdrop-filter: none; display: flex; justify-content: center;">
+                    <img loading="lazy" src="immagini_2/task_bar.webp" alt="Taskbar"
+                        style="width: auto; height: 75px; display: block; object-fit: contain;">
+                </div>
+            </div>
+
+        </div>
+        <audio id="main-audio-player"></audio>
+    </div>
+
+    <!-- LE ICONE E I MODALI SOTTOSTANTI EREDITERANNO AUTOMATICAMENTE IL FONT DAL :ROOT/BODY -->
+    <div class="desktop-icon" style="top: 230px; left: 600px;" onclick="apriFinestra('modal-homizy')">
+        <img src="immagini_2/cartella2.png" alt="homizy">
+        <span>homizy</span>
+    </div>
+
+    <div class="desktop-icon" style="top: 290px; left: 830px;" onclick="apriFinestra('modal-moku')">
+        <img src="immagini_2/cartella2.png" alt="moku">
+        <span>moku</span>
+    </div>
+
+    <div class="desktop-icon" style="top: 90px; right: 300px;" onclick="apriFinestra('modal-aboutme')">
+        <img src="immagini_2/Apple_Notes.png" alt="Note">
+        <span>about me</span>
+    </div>
+
+    <div class="desktop-icon" style="top: 340px; left: 670px;" onclick="apriFinestra('modal-yomi')">
+        <img src="immagini_2/cartella2.png" alt="yomi">
+        <span>yomi</span>
+    </div>
+
+    <div class="desktop-icon" style="top: 130px; right: 630px;" onclick="apriFinestra('modal-patpat')">
+        <img src="immagini_2/cartella2.png" alt="patpat">
+        <span>pat pat</span>
+    </div>
+
+    <div class="desktop-icon" style="top: 560px; right: 260px;" onclick="apriFinestra('modal-earthviaggi')">
+        <img src="immagini_2/cartella2.png" alt="earthviaggi">
+        <span>earthviaggi</span>
+    </div>
+
+    <!--<div class="desktop-icon" style="top: 500px; right: 400px;" onclick="apriFinestra('modal-teatroarcimboldi')">
+        <img src="immagini_2/cartella2.png" alt="Note">
+        <span>teatro arcimboldi</span>
+    </div>>-->
+
+    <div id="modal-aboutme" class="modal-overlay" onclick="chiudiFinestra('modal-aboutme')">
+        <div class="mac-window" onclick="event.stopPropagation()">
+            <div class="mac-header">
+                <div class="mac-buttons">
+                    <button class="mac-btn red" onclick="chiudiFinestra('modal-aboutme')"></button>
+                    <button class="mac-btn yellow"></button>
+                    <button class="mac-btn green"></button>
+                </div>
+                <div class="mac-title">about me</div>
+            </div>
+            <div class="mac-content">
+                <img src="immagini_2/me.webp" alt="About Me">
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-homizy" class="modal-overlay" onclick="chiudiFinestra('modal-homizy')">
+        <div class="mac-window" onclick="event.stopPropagation()">
+            <div class="mac-header">
+                <div class="mac-buttons">
+                    <button class="mac-btn red" onclick="chiudiFinestra('modal-homizy')"></button>
+                    <button class="mac-btn yellow"></button>
+                    <button class="mac-btn green"></button>
+                </div>
+                <div class="mac-title">homizy</div>
+            </div>
+            <div class="mac-content">
+                <img src="immagini_2/1.webp" alt="Homizy">
+                <img src="immagini_2/2.webp" alt="Homizy">
+                <img src="immagini_2/3.webp" alt="Homizy">
+                <img src="immagini_2/4.webp" alt="Homizy">
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-yomi" class="modal-overlay" onclick="chiudiFinestra('modal-yomi')">
+        <div class="mac-window fit-folder" onclick="event.stopPropagation()">
+            <div class="mac-header">
+                <div class="mac-buttons">
+                    <button class="mac-btn red" onclick="chiudiFinestra('modal-yomi')"></button>
+                    <button class="mac-btn yellow"></button>
+                    <button class="mac-btn green"></button>
+                </div>
+                <div class="mac-title">yomi</div>
+            </div>
+            <div class="mac-content">
+                <img src="immagini_2/9.webp" alt="Yomi">
+                <img src="immagini_2/10.webp" alt="Yomi">
+                <img src="immagini_2/11.webp" alt="Yomi">
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-moku" class="modal-overlay" onclick="chiudiFinestra('modal-moku')">
+        <div class="mac-window fit-folder" onclick="event.stopPropagation()">
+            <div class="mac-header">
+                <div class="mac-buttons">
+                    <button class="mac-btn red" onclick="chiudiFinestra('modal-moku')"></button>
+                    <button class="mac-btn yellow"></button>
+                    <button class="mac-btn green"></button>
+                </div>
+                <div class="mac-title">moku</div>
+            </div>
+            <div class="mac-content">
+                <img src="immagini_2/5.webp" alt="Moku">
+                <img src="immagini_2/6.webp" alt="Moku">
+                <img src="immagini_2/7.webp" alt="Moku">
+                <img src="immagini_2/8.webp" alt="Moku">
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-patpat" class="modal-overlay" onclick="chiudiFinestra('modal-patpat')">
+        <div class="mac-window" onclick="event.stopPropagation()">
+            <div class="mac-header">
+                <div class="mac-buttons">
+                    <button class="mac-btn red" onclick="chiudiFinestra('modal-patpat')"></button>
+                    <button class="mac-btn yellow"></button>
+                    <button class="mac-btn green"></button>
+                </div>
+                <div class="mac-title">pat pat</div>
+            </div>
+            <div class="mac-content">
+                <img src="immagini_2/12.webp" alt="Pat Pat">
+                <img src="immagini_2/13.webp" alt="Pat Pat">
+                <img src="immagini_2/14.webp" alt="Pat Pat">
+                <img src="immagini_2/15.webp" alt="Pat Pat">
+                <img src="immagini_2/16.webp" alt="Pat Pat">
+                <img src="immagini_2/17.webp" alt="Pat Pat">
+                <img src="immagini_2/18.webp" alt="Pat Pat">
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-earthviaggi" class="modal-overlay" onclick="chiudiFinestra('modal-earthviaggi')">
+        <div class="mac-window fit-folder" onclick="event.stopPropagation()">
+            <div class="mac-header">
+                <div class="mac-buttons">
+                    <button class="mac-btn red" onclick="chiudiFinestra('modal-earthviaggi')"></button>
+                    <button class="mac-btn yellow"></button>
+                    <button class="mac-btn green"></button>
+                </div>
+                <div class="mac-title">earthviaggi</div>
+            </div>
+            <div class="mac-content">
+                <img src="immagini_2/w.jpg" alt="Earthviaggi">
+            </div>
+        </div>
+    </div>
+
+    <!--<div id="modal-teatroarcimboldi" class="modal-overlay" onclick="chiudiFinestra('modal-teatroarcimboldi')">
+        <div class="mac-window fit-folder" onclick="event.stopPropagation()">
+            <div class="mac-header">
+                <div class="mac-buttons">
+                    <button class="mac-btn red" onclick="chiudiFinestra('modal-teatroarcimboldi')"></button>
+                    <button class="mac-btn yellow"></button>
+                    <button class="mac-btn green"></button>
+                </div>
+                <div class="mac-title">teatro arcimboldi</div>
+            </div>
+            <div class="mac-content">
+                <img src="immagini_2/19.webp" alt="Teatroarcimboldi">
+                <img src="immagini_2/20.webp" alt="Teatroarcimboldi">
+                <img src="immagini_2/21.webp" alt="Teatroarcimboldi">
+                <img src="immagini_2/22.webp" alt="Teatroarcimboldi">
+                <img src="immagini_2/23.webp" alt="Teatroarcimboldi">
+                <img src="immagini_2/24.webp" alt="Teatroarcimboldi">
+            </div>
+        </div>
+    </div>-->
+
+    <script>
+        function generaGrigliaCalendario(dataAttuale) {
+            const gridContainer = document.getElementById('cal-days-grid');
+            if (!gridContainer) return;
+            gridContainer.innerHTML = '';
+
+            const anno = dataAttuale.getFullYear();
+            const mese = dataAttuale.getMonth();
+            const oggi = dataAttuale.getDate();
+
+            const primoGiornoMese = new Date(anno, mese, 1);
+            let giornoSettimanaInizio = primoGiornoMese.getDay() - 1;
+            if (giornoSettimanaInizio === -1) giornoSettimanaInizio = 6;
+
+            const totaleGiorniMese = new Date(anno, mese + 1, 0).getDate();
+            const totaleGiorniMesePrecedente = new Date(anno, mese, 0).getDate();
+
+            for (let i = giornoSettimanaInizio - 1; i >= 0; i--) {
+                const span = document.createElement('span');
+                span.textContent = totaleGiorniMesePrecedente - i;
+                gridContainer.appendChild(span);
+            }
+
+            for (let giorno = 1; giorno <= totaleGiorniMese; giorno++) {
+                const span = document.createElement('span');
+                span.textContent = giorno;
+                span.classList.add('current-month-day');
+
+                if (giorno === oggi) {
+                    span.classList.add('active-today-circle');
+                }
+                gridContainer.appendChild(span);
+            }
+
+            const celleTotali = gridContainer.children.length;
+            const celleMancanti = celleTotali <= 35 ? 35 - celleTotali : 42 - celleTotali;
+            for (let giornoSuccessivo = 1; giornoSuccessivo <= celleMancanti; giornoSuccessivo++) {
+                const span = document.createElement('span');
+                span.textContent = giornoSuccessivo;
+                gridContainer.appendChild(span);
+            }
+        }
+
+        function aggiornaTempo() {
+            const oraAttuale = new Date();
+
+            let ore = String(oraAttuale.getHours()).padStart(2, '0');
+            let minutes = String(oraAttuale.getMinutes()).padStart(2, '0');
+            let secondi = String(oraAttuale.getSeconds()).padStart(2, '0');
+
+            // Aggiorna le singole tessere del flip clock
+            const pHours = document.getElementById('flip-hours');
+            const pMinutes = document.getElementById('flip-minutes');
+            const pSeconds = document.getElementById('flip-seconds');
+
+            if (pHours) pHours.textContent = ore;
+            if (pMinutes) pMinutes.textContent = minutes;
+            if (pSeconds) pSeconds.textContent = secondi;
+
+            // ... Lascia invariato tutto il codice sottostante riguardante il calendario ...
+            let opzioniMese = { month: 'long' };
+            let opzioniNomeGiorno = { weekday: 'long' };
+            let nomeMese = oraAttuale.toLocaleDateString('it-IT', opzioniMese);
+            let numeroGiorno = oraAttuale.getDate();
+            let nomeGiorno = oraAttuale.toLocaleDateString('it-IT', opzioniNomeGiorno);
+
+            document.getElementById('cal-month-left').textContent = nomeMese;
+            document.getElementById('cal-day-left').textContent = numeroGiorno;
+            document.getElementById('cal-dayname-left').textContent = nomeGiorno.substring(0, 3) + '.';
+
+            generaGrigliaCalendario(oraAttuale);
+        }
+
+        aggiornaTempo();
+        setInterval(aggiornaTempo, 1000);
+
+        const canzoniSpotify = [
+            "https://open.spotify.com/embed/track/6gHwnlBWIDostwWEHLwoEs?utm_source=generator&theme=0&si=4973abfdebf14f33", "https://open.spotify.com/embed/track/1BANPzYIhCQkJ1ZFq2Fb0O?utm_source=generator&theme=0&si=72f108afefdf42ec",
+            "https://open.spotify.com/embed/track/0RiRZpuVRbi7oqRdSMwhQY?utm_source=generator&theme=0&si=914d279d366444fe", "https://open.spotify.com/embed/track/185mDjE865QpjA4MtzAzgs?utm_source=generator&theme=0&si=19f21f49855c43aa",
+            "https://open.spotify.com/embed/track/3nsAgjl7PI0bcbdY6sDczi?utm_source=generator&theme=0&si=4465b54a5a4e496a", "https://open.spotify.com/embed/track/0dV2XGlA08rObQZdL4mPOK?utm_source=generator&theme=0&si=c36e46168a714098",
+            "https://open.spotify.com/embed/track/4vEE3lzBLXBN3RxyGtZNir?utm_source=generator&theme=0&si=4cbc97e15f3e4730", "https://open.spotify.com/embed/track/0CokSRCu5hZgPxcZBaEzVE?utm_source=generator&theme=0&si=c43f862b8d244a27",
+            "https://open.spotify.com/embed/track/4bDIAWaOBGAAk95nyXI6zJ?utm_source=generator&theme=0&si=24ec1d87ed5d4f4d", "https://open.spotify.com/embed/track/6BRUhKUJjNc09y2Nb7e4VF?utm_source=generator&theme=0&si=83760cbbccde4d54",
+            "https://open.spotify.com/embed/track/0D57lQnn110jGaup4NguSI?utm_source=generator&theme=0&si=04114939bf9e4ab5", "https://open.spotify.com/embed/track/2rTaagMINj0JK5eHi467Rt?utm_source=generator&theme=0&si=ae6952f4452c4a47",
+            "https://open.spotify.com/embed/track/5B0ibk0qk9ees6wvlzMsZe?utm_source=generator&theme=0&si=6f142571b1924b5a", "https://open.spotify.com/embed/track/74nNA3hsTC9USUBIzlQj6G?utm_source=generator&theme=0&si=070195418e06497f",
+            "https://open.spotify.com/embed/track/0Df7vvGKH9yI2dyhLwU46j?utm_source=generator&theme=0&si=9df20982ac7f4289", "https://open.spotify.com/embed/track/1d36tpKpByF5Wcndsqr4Bq?utm_source=generator&theme=0&si=86f4e8a2096d4018",
+            "https://open.spotify.com/embed/track/4KzOYxD4qIkUtZV9ZYakGu?utm_source=generator&theme=0&si=7ec4532d9ec84e93", "https://open.spotify.com/embed/track/6VZaWYhELTIpY1dTjWwrKN?utm_source=generator&theme=0&si=f601114092bd4cb6",
+            "https://open.spotify.com/embed/track/4C3TNDpxyXA2FxpEvp1pqt?utm_source=generator&theme=0&si=acf029d3cd8b4490", "https://open.spotify.com/embed/track/2obQUZCZJttb5PHR3ANAZo?utm_source=generator&theme=0&si=46011d4648a041c4",
+            "https://open.spotify.com/embed/track/0x4HvQuUbXAa4bYForAK7S?utm_source=generator&theme=0&si=49e1c2b23543483f", "https://open.spotify.com/embed/track/08RVzS1yTy1TsVuRgziTOq?utm_source=generator&theme=0&si=2c974520fafc4ae3",
+            "https://open.spotify.com/embed/track/4vFXO237XjPm910TDvvsfg?utm_source=generator&theme=0&si=b49cf07002d04269", "https://open.spotify.com/embed/track/6hqgRCAxFKoU5D8JC4pE0o?utm_source=generator&theme=0&si=355ecf9f128244e9",
+            "https://open.spotify.com/embed/track/2ySUSHhkltyM9LGaFbFXbj?utm_source=generator&theme=0&si=854547a0c8884fab", "https://open.spotify.com/embed/track/4eChbtoFoOmWQt03aRDzaJ?utm_source=generator&theme=0&si=6ca37ab91a87451b",
+            "https://open.spotify.com/embed/track/0zxvemE96KZ4xBrFolkL1Y?utm_source=generator&theme=0&si=8f15d058ef044331", "https://open.spotify.com/embed/track/3c2yHDQ5O8kWICjDwWIBiH?utm_source=generator&theme=0&si=2f9baebcd24349b7",
+            "https://open.spotify.com/embed/track/3YOZLPRiTuYgItSGO41gPT?utm_source=generator&theme=0&si=7b6a718dd9b44e30", "https://open.spotify.com/embed/track/4nljs64Ezcv0k3cRupTe0j?utm_source=generator&theme=0&si=b3a030ec5a62414d",
+            "https://open.spotify.com/embed/track/3FNy4yzOhHhFBeA5p4ofoq?utm_source=generator&theme=0&si=13c3f743bfc34234", "https://open.spotify.com/embed/track/6t0ovtgnoAq9orbnisSzZp?utm_source=generator&theme=0&si=679a094d4ace4575",
+            "https://open.spotify.com/embed/track/2kWZIDANL5iq02xplD4fhw?utm_source=generator&theme=0&si=6fff1ec527ea4d1c", "https://open.spotify.com/embed/track/7IBGw13AbUorsu133u6Q0Z?utm_source=generator&theme=0&si=e4e4e2a8a4dc4fb7",
+            "https://open.spotify.com/embed/track/0xEgDBXYO9gGzmxCFWKxNg?utm_source=generator&theme=0&si=c204c7a540324736", "https://open.spotify.com/embed/track/5KgCXKLAuDmeuE9xqW7H0y?utm_source=generator&theme=0&si=459212c4fd414475"
+        ];
+
+        function caricaCanzoneCasuale() {
+            const indiceCasuale = Math.floor(Math.random() * canzoniSpotify.length);
+            const player = document.getElementById('spotify-player');
+            if (player) { player.src = canzoniSpotify[indiceCasuale]; }
+        }
+        caricaCanzoneCasuale();
+
+        function apriFinestra(idFinestra) {
+            const overlay = document.getElementById(idFinestra);
+            if (overlay) { overlay.classList.add('active'); }
+        }
+
+        function chiudiFinestra(idFinestra) {
+            const overlay = document.getElementById(idFinestra);
+            if (overlay) { overlay.classList.remove('active'); }
+        }
+    </script>
+</body>
+
+</html>
