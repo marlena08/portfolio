@@ -64,6 +64,7 @@
                 margin: 0;
                 width: 100%;
                 font-family: var(--default-font-family);
+                overflow: hidden;
             }
 
             body:has([data-page-overflowx='hidden']) {
@@ -258,16 +259,18 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 80px;
+            width: 85px;
             text-align: center;
             cursor: pointer;
             user-select: none;
             z-index: 10;
+            padding: 6px;
+            transition: background 0.2s ease;
         }
 
         .desktop-icon img {
-            width: 60px;
-            height: 60px;
+            width: 52px;
+            height: 52px;
             object-fit: contain;
             margin-bottom: 6px;
             filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.3));
@@ -277,20 +280,62 @@
         .desktop-icon span {
             color: #ffffff;
             font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
-            text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8);
+            text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.9);
             word-break: break-word;
+            line-height: 1.2;
         }
 
         .desktop-icon:hover {
             background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 6px;
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
         }
 
         .desktop-icon:hover img {
-            transform: scale(1.05);
+            transform: scale(1.06);
+        }
+
+        /* AREA AREA INTERATTIVA SOPRA LA TASKBAR */
+        .dock-trigger-container {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            /* <--- Stringiamo leggermente la larghezza totale per raggrupparli */
+            height: 75px;
+            z-index: 50;
+            display: flex;
+            justify-content: main;
+            /* Usiamo una gestione più controllata degli spazi */
+            gap: 14px;
+            /* <--- Distanza fissa e uniforme tra un pulsante e l'altro */
+            align-items: center;
+            padding: 0 24px;
+            /* <--- Margine interno per centrare il blocco sulle icone */
+            box-sizing: border-box;
+        }
+
+        /* I SINGOLI PULSANTI INVISIBILI */
+        .dock-link-btn {
+            width: 52px;
+            /* <--- Larghezza esatta della singola icona quadrata */
+            height: 52px;
+            cursor: pointer;
+            /* background: rgba(255, 0, 0, 0.3); */
+            /* <--- Scommenta questa riga per vedere i quadrati rossi e allinearli al millimetro! */
+        }
+
+        /* SPAZIATORE PER LA LINEA DEL CESTINO */
+        .dock-separator-space {
+            width: 15px;
+            /* <--- Questo compensa lo spazio della linea verticale prima del cestino */
+        }
+
+        .dock-link-btn:hover {
+            transform: scale(1.22) translateY(-10px);
         }
 
         /* --- STILI DASHBOARD VERTICALE INTERFACCIA APPLE NATIVA --- */
@@ -305,112 +350,37 @@
 
         /* 1. OROLOGIO E DATA CONTAINER INTEGRATO */
         .apple-clock-widget.flip-clock-container {
-            width: 100%;
-            background-color: #1e1e1e !important;
-            border: 4px solid #2b2b2b;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 2px 6px rgba(255, 255, 255, 0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 14px 10px;
-            box-sizing: border-box;
-            gap: 10px;
+            display: none !important;
+            /* Totalmente rimosso dal layout visivo */
         }
 
-        /* Griglia dell'orologio */
-        .flip-clock {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        /* Singola tessera/paletta dell'orologio */
-        .flip-card {
-            position: relative;
-            width: 60px;
-            height: 64px;
-            background: #C0DF97;
-            border-radius: 10px;
-            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4), 0 4px 8px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #5d7b8b;
-        }
-
-        /* Linea orizzontale centrale che taglia a metà la cifra */
-        .flip-card::after {
-            content: '';
+        /* OROLOGIO NELLA TOP HEADER BAR STILE MAC */
+        .mac-header-clock {
             position: absolute;
-            left: 0;
-            top: 50%;
-            width: 100%;
-            height: 2px;
-            background-color: rgba(0, 0, 0, 0.4);
-            z-index: 2;
-        }
-
-        /* Cifre stile digitale/retro */
-        .flip-card-inner {
-            font-family: "SF Pro Display", -apple-system, sans-serif;
-            font-size: 42px;
-            font-weight: 800;
-            color: #1e1e1e;
-            line-height: 1;
-            z-index: 1;
-            letter-spacing: -1px;
-        }
-
-        /* Separatori dei due punti (:) */
-        .flip-separator {
-            font-size: 36px;
-            font-weight: 700;
+            top: 4px;
+            right: 130px;
+            /* Allineato perfettamente a destra sul bordo delle icone */
+            z-index: 100;
             color: #ffffff;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            50% {
-                opacity: 0.4;
-            }
-        }
-
-        /* STILE DATA SOTTO L'OROLOGIO */
-        .apple-live-date {
-            color: #C0DF97;
-            font-size: 15px;
-            font-weight: 700;
+            font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 11px;
+            font-weight: 500;
             letter-spacing: 0.3px;
-            font-family: "SF Pro Display", -apple-system, sans-serif;
-
+            user-select: none;
         }
 
-        /* 2. NUOVO CUBOTTO GRANDE: CHI SONO WIDGET STYLE (AGGIORNATO) */
+        /* 2. CUBOTTO GRANDE: CHI SONO */
         .apple-about-me-widget {
             width: 100%;
             height: 280px;
-            /* Aumentato per far entrare tutto il testo */
             background: #1e1e1e !important;
             border-radius: 15px;
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
             box-sizing: border-box;
             display: flex;
             align-items: flex-start;
-            /* Allinea gli elementi in alto */
             padding: 16px;
             gap: 16px;
-        }
-
-        /* Colonna di sinistra: Foto + Info Brevi */
-        .about-widget-left-col {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            flex-shrink: 0;
-            width: 100px;
         }
 
         .about-widget-pic {
@@ -429,7 +399,6 @@
             display: block;
         }
 
-        /* Info brevi sotto la foto */
         .about-widget-short-info {
             color: #b0b0b5;
             font-size: 12px;
@@ -445,7 +414,6 @@
             margin-bottom: 2px;
         }
 
-        /* Colonna di destra: Testi principali */
         .about-widget-text {
             display: flex;
             flex-direction: column;
@@ -476,10 +444,36 @@
         .about-widget-text .bio-desc {
             margin: 0;
             font-size: 12px;
-            /* Leggermente ottimizzato per la leggibilità */
             color: #e1e1e6;
             line-height: 1.4;
             font-weight: 400;
+        }
+
+        /* PULSANTE MAC-STYLE PER ABOUT ME DENTRO IL WIDGET */
+        .mac-cta-button {
+            width: max-content;
+            display: block;
+            margin: 20px auto 15px auto;
+            background: #ffffff;
+            border: 1px solid #C0DF97;
+            color: #1e1e1e;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-family: 'SF Pro Display', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: lowercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .mac-cta-button:hover {
+            background: #C0DF97;
+            color: #1e1e1e;
+            box-shadow: 0 4px 12px rgba(192, 223, 151, 0.3);
+            transform: translateY(-1px);
         }
 
         /* 3. SPOTIFY SECTION */
@@ -619,6 +613,113 @@
         #modal-aboutme .mac-content {
             padding-top: 20px !important;
         }
+
+        .trash-message-box {
+            padding: 24px;
+            font-family: "SF Pro Display", -apple-system, sans-serif;
+            text-align: center;
+            color: #333333;
+        }
+
+        .trash-message-box h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #ff0d00;
+        }
+
+        .trash-message-box p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #555555;
+            margin-bottom: 24px;
+        }
+
+        .trash-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .trash-btn {
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .trash-btn.primary {
+            background: #C0DF97;
+            color: #1e1e1e;
+        }
+
+        .trash-btn.primary:hover {
+            background: #8fac6a;
+        }
+
+        .trash-btn.secondary {
+            background: #eaeaea;
+            color: #333;
+        }
+
+        .trash-btn.secondary:hover {
+            background: #dcdcdc;
+        }
+
+        /* Effetto "NO" Esplosivo */
+        .no-particle {
+            position: fixed;
+            pointer-events: none;
+            /* Evita che i "no" blocchino altri click */
+            color: #ffffff;
+            /* Rosso stile Apple, puoi cambiarlo es. #C0DF97 */
+            font-family: "SF Pro Display", -apple-system, sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            z-index: 9999;
+            user-select: none;
+            animation: vola-via 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes vola-via {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(0.5) translate(0, 0);
+            }
+
+            100% {
+                opacity: 0;
+                /* Spostamento casuale verso l'alto e i lati gestito da JS tramite variabili CSS */
+                transform: translate(-50%, -50%) scale(1.3) translate(var(--x), var(--y)) rotate(var(--r));
+            }
+        }
+
+        /* Bottone Amen (Stile invertito rispetto ad About Me) */
+        .mac-amen-button {
+            background: #1e1e1e;
+            border: 1px solid #C0DF97;
+            color: #ffffff;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-family: 'SF Pro Display', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: lowercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        /* Quando ci vai sopra con il mouse, diventa tutto verde con testo scuro */
+        .mac-amen-button:hover {
+            background: #C0DF97;
+            color: #1e1e1e;
+            box-shadow: 0 4px 12px rgba(192, 223, 151, 0.3);
+            transform: translateY(-1px);
+        }
     </style>
 </head>
 
@@ -630,47 +731,32 @@
 
             <img alt="Background" src="immagini_2/sfondo3.jpg" class="css-ez8men css-trglf0 css-scd4s8">
 
+            <!-- BARRA SUPERIORE MAC -->
             <img alt="Menu bar" src="immagini_2/menu_bar.webp" class="css-86reuw css-trglf0"
                 style="width: 100%; height: 24px; display: block;">
+
+            <!-- ELEMENTO LIVE CLOCK POSIZIONATO SOPRA LA BARRA -->
+            <div id="mac-live-clock" class="mac-header-clock">Caricamento...</div>
 
 
             <div class="widgy-unified-dashboard" style="position: absolute; top: 60px; left: 40px;">
 
-                <!-- 1. WIDGET OROLOGIO E DATA IN TEMPO REALE -->
-                <div class="apple-clock-widget flip-clock-container">
-                    <div class="flip-clock">
-                        <div class="flip-card">
-                            <div class="flip-card-inner" id="flip-hours">00</div>
-                        </div>
-                        <div class="flip-separator">:</div>
-                        <div class="flip-card">
-                            <div class="flip-card-inner" id="flip-minutes">00</div>
-                        </div>
-                        <div class="flip-separator">:</div>
-                        <div class="flip-card">
-                            <div class="flip-card-inner" id="flip-seconds">00</div>
-                        </div>
-                    </div>
-                    <!-- Elemento data dinamica aggiunto -->
-                    <div class="apple-live-date" id="apple-live-date-display">Caricamento data...</div>
-                </div>
-
-                <!-- 2. CUBOTTO GRANDE: CHI SONO (CON CTA CENTRATA E CORRETTA DENTRO IL BOX) -->
+                <!-- 2. CUBOTTO GRANDE: CHI SONO -->
                 <div class="apple-about-me-widget"
-                    style="height: 280px; display: flex; flex-direction: column; justify-content: space-between; padding: 16px; box-sizing: border-box; background: #1e1e1e !important; border-radius: 15px;">
+                    style="height: 280px !important; display: flex; flex-direction: column; justify-content: space-between; padding: 16px 16px 20px 16px; box-sizing: border-box; background: #1e1e1e !important; border-radius: 15px;">
 
-                    <!-- Parte Alta: Foto a sinistra e Biografia a destra -->
-                    <div style="display: flex; gap: 16px; align-items: flex-start; flex-grow: 1;">
+                    <!-- Parte Alta -->
+                    <div style="display: flex; gap: 14px; align-items: flex-start;">
 
-                        <!-- Sotto-colonna Sinistra: Foto + Info Utili -->
-                        <div style="width: 100px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px;">
+                        <!-- Sotto-colonna Sinistra -->
+                        <div style="width: 100px; flex-shrink: 0; display: flex; flex-direction: column; gap: 6px;">
                             <div class="about-widget-pic"
                                 style="width: 100px; height: 100px; border-radius: 12px; overflow: hidden; background: #2b2b2b; border: 1px solid rgba(255, 255, 255, 0.1);">
                                 <img src="immagini_2/m2.jpg" alt="Morena Nobile"
                                     style="width: 100%; height: 100%; object-fit: cover; display: block;">
                             </div>
                             <div class="about-widget-short-info"
-                                style="color: #dadada; font-size: 11px; line-height: 1.4; font-weight: 500; font-family: 'SF Pro Display', sans-serif;">
+                                style="color: #dadada; font-size: 11px; line-height: 1.3; font-weight: 500; font-family: 'SF Pro Display', sans-serif;">
                                 <span
                                     style="display: block; color: #C0DF97; font-weight: 600; margin-bottom: 2px;">info</span>
                                 - book lover<br>
@@ -679,46 +765,41 @@
                             </div>
                         </div>
 
-                        <!-- Sotto-colonna Destra: Nome e Testo Biografia -->
+                        <!-- Sotto-colonna Destra -->
                         <div
-                            style="display: flex; flex-direction: column; gap: 4px; color: #ffffff; font-family: 'SF Pro Display', sans-serif;">
+                            style="display: flex; flex-direction: column; gap: 2px; color: #ffffff; font-family: 'SF Pro Display', sans-serif;">
                             <h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: 0.2px;">Morena
                                 Nobile</h3>
                             <p class="role"
-                                style="margin: 0 0 4px 0; color: #C0DF97; font-size: 13px; font-weight: 600; line-height: 1.2;">
+                                style="margin: 0 0 2px 0; color: #C0DF97; font-size: 13px; font-weight: 600; line-height: 1.2;">
                                 Junior UX/UI Designer</p>
                             <p class="bio-desc"
-                                style="margin: 0; font-size: 11.5px; color: #e1e1e6; line-height: 1.4; text-align: left;">
+                                style="margin: 0; font-size: 11px; color: #e1e1e6; line-height: 1.35; text-align: left;">
                                 Benvenuto nel mio mondo. <br>In pratica, passo le mie giornate a cercare di capire cosa
                                 passi per la testa delle persone quando usano un sito, per evitare che facciano la mia
-                                stessa faccia a sinistra. <br>Curioso di vedere i risultati?<br> Esplora le
-                                cartelle dei miei
-                                progetti sul
-                                desktop    :)
+                                stessa faccia a sinistra. <br>Curioso di vedere i risultati?<br> Esplora le cartelle dei
+                                miei progetti sul desktop :)
                             </p>
                         </div>
-
                     </div>
 
-                    <!-- Parte Bassa: Centrata e blindata DENTRO il rettangolo nero -->
-                    <div
-                        style="width: 100%; font-family: 'SF Pro Display', sans-serif; padding-top: 4px; flex-shrink: 0;">
-                        <p class="cta-notes"
-                            style="margin: 0; color: #ffffff; font-size: 11px; font-weight: 600; line-height: 1.2; text-align: center;">
-                            * per info serie cliccare su about me *
-                        </p>
+                    <!-- Parte Bassa: Contenitore del bottone con spazio di sicurezza sul fondo -->
+                    <div style="width: 100%; padding-top: 4px; display: flex; justify-content: center;">
+                        <button class="mac-cta-button" onclick="apriFinestra('modal-aboutme')">
+                         <strong>  per info serie cliccare qui  </strong> 
+                        </button>
                     </div>
 
                 </div>
 
-                <!-- 4. NUOVO WIDGET FOTOGRAFICO (SOTTO SPOTIFY) -->
+                <!-- 4. WIDGET FOTOGRAFICO -->
                 <div class="apple-photo-widget"
                     style="width: 100%; height: 110px; background: #1e1e1e !important; border-radius: 15px; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12); box-sizing: border-box; overflow: hidden;">
                     <img src="immagini_2/c.jpg" alt="Foto Widget"
                         style="width: 100%; height: 100%; object-fit: cover; display: block;">
                 </div>
 
-                <!-- 3. RETTANGOLO SPOTIFY (Invariato) -->
+                <!-- 3. RETTANGOLO SPOTIFY -->
                 <div class="widgy-spotify-section">
                     <iframe id="spotify-player" data-testid="embed-iframe" style="border-radius:24px" width="100%"
                         height="152" frameBorder="0" allowfullscreen=""
@@ -727,14 +808,28 @@
                     </iframe>
                 </div>
 
-
             </div>
 
+            <!-- TASKBAR DI SFONDO (NON CLICCABILE) -->
             <div class="css-k1285g css-2chd6x css-roiesn"
-                style="top: calc(50% + 360px); left: 50%; transform: translate(-50%, -50%); z-index: 40;">
+                style="top: calc(50% + 360px); left: 50%; transform: translate(-50%, -50%); z-index: 40; pointer-events: none;">
                 <div style="background: transparent; backdrop-filter: none; display: flex; justify-content: center;">
                     <img loading="lazy" src="immagini_2/task_bar.webp" alt="Taskbar"
                         style="width: auto; height: 75px; display: block; object-fit: contain;">
+                </div>
+            </div>
+
+            <!-- AREA DEI PULSANTI TRASPARENTI INTERATTIVI ESATTAMENTE SOPRA LE ICONE DELLA TASKBAR -->
+            <div class="dock-trigger-container" style="top: calc(50% + 322px);">
+                <div class="dock-link-btn" title="YouTube" onclick="creaEffettoNo(event)"></div>
+                <div class="dock-link-btn" title="Photoshop" onclick="creaEffettoNo(event)"></div>
+                <div class="dock-link-btn" title="VS Code" onclick="creaEffettoNo(event)"></div>
+                <div class="dock-link-btn" title="Premiere" onclick="creaEffettoNo(event)"></div>
+                <div class="dock-link-btn" title="Figma" onclick="creaEffettoNo(event)"></div>
+                <div class="dock-link-btn" title="Chrome" onclick="creaEffettoNo(event)"></div>
+                <!-- Spazio per la linea verticale separatrice se necessario, altrimenti lascialo vuoto -->
+                <div class="dock-separator-space"></div>
+                <div class="dock-link-btn" title="Cestino" onclick=" apriFinestra('modal-trash')">
                 </div>
             </div>
 
@@ -742,33 +837,28 @@
         <audio id="main-audio-player"></audio>
     </div>
 
-    <!-- SEZIONE ICONE DESKTOP -->
-    <div class="desktop-icon" style="top: 230px; left: 600px;" onclick="apriFinestra('modal-homizy')">
+    <!-- SEZIONE ICONE DESKTOP ALLINEATE A GRIGLIA MAGNETICA SULLA DESTRA -->
+    <div class="desktop-icon" style="top: 60px; right: 40px;" onclick="apriFinestra('modal-homizy')">
         <img src="immagini_2/cartella.png" alt="homizy">
         <span>homizy</span>
     </div>
 
-    <div class="desktop-icon" style="top: 290px; left: 830px;" onclick="apriFinestra('modal-moku')">
+    <div class="desktop-icon" style="top: 170px; right: 40px;" onclick="apriFinestra('modal-moku')">
         <img src="immagini_2/cartella.png" alt="moku">
         <span>moku</span>
     </div>
 
-    <div class="desktop-icon" style="top: 90px; right: 300px;" onclick="apriFinestra('modal-aboutme')">
-        <img src="immagini_2/Apple_Notes.png" alt="Note">
-        <span>about me</span>
-    </div>
-
-    <div class="desktop-icon" style="top: 340px; left: 670px;" onclick="apriFinestra('modal-yomi')">
+    <div class="desktop-icon" style="top: 280px; right: 40px;" onclick="apriFinestra('modal-yomi')">
         <img src="immagini_2/cartella.png" alt="yomi">
         <span>yomi</span>
     </div>
 
-    <div class="desktop-icon" style="top: 130px; right: 630px;" onclick="apriFinestra('modal-patpat')">
+    <div class="desktop-icon" style="top: 390px; right: 40px;" onclick="apriFinestra('modal-patpat')">
         <img src="immagini_2/cartella.png" alt="patpat">
         <span>pat pat</span>
     </div>
 
-    <div class="desktop-icon" style="top: 560px; right: 260px;" onclick="apriFinestra('modal-earthviaggi')">
+    <div class="desktop-icon" style="top: 500px; right: 40px;" onclick="apriFinestra('modal-earthviaggi')">
         <img src="immagini_2/cartella.png" alt="earthviaggi">
         <span>earthviaggi</span>
     </div>
@@ -885,39 +975,56 @@
         </div>
     </div>
 
+    <!-- POPUP EASTER EGG CESTINO -->
+    <div id="modal-trash" class="modal-overlay" onclick="chiudiFinestra('modal-trash')">
+        <div class="mac-window" style="width: 450px;" onclick="event.stopPropagation()">
+            <div class="mac-header">
+                <div class="mac-buttons">
+                    <button class="mac-btn red" onclick="chiudiFinestra('modal-trash')"></button>
+                    <button class="mac-btn yellow"></button>
+                    <button class="mac-btn green"></button>
+                </div>
+                <div class="mac-title">cestino</div>
+            </div>
+            <div class="trash-message-box">
+                <h4>attenzione!</h4>
+                <p>questo è il cimitero dei layout progettati male <br> riposate in pace :')</p>
+                <div class="trash-actions">
+                    <!-- Nuovo bottone "amen" con lo stesso identico funzionamento e transizioni -->
+                    <button class="mac-amen-button" onclick="chiudiFinestra('modal-trash')">
+                        amen
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <script>
-        function aggiornaTempoEData() {
+        function aggiornaOrologioMac() {
             const oraAttuale = new Date();
 
+            // Sincronizzazione precisa con lo stile compatto macOS (Es: lun 13 lug 18:27)
+            const opzioniData = { weekday: 'short', day: 'numeric', month: 'short' };
+            let dataFormattata = oraAttuale.toLocaleDateString('it-IT', opzioniData);
+
+            // Pulizia del punto dall'abbreviazione del giorno (es: "lun." -> "lun")
+            dataFormattata = dataFormattata.replace('.', '');
+
             let ore = String(oraAttuale.getHours()).padStart(2, '0');
-            let minutes = String(oraAttuale.getMinutes()).padStart(2, '0');
-            let secondi = String(oraAttuale.getSeconds()).padStart(2, '0');
+            let minuti = String(oraAttuale.getMinutes()).padStart(2, '0');
 
-            // Aggiorna le singole tessere del flip clock
-            const pHours = document.getElementById('flip-hours');
-            const pMinutes = document.getElementById('flip-minutes');
-            const pSeconds = document.getElementById('flip-seconds');
+            const stringaOrologioFinale = `${dataFormattata} ${ore}:${minuti}`;
 
-            if (pHours) pHours.textContent = ore;
-            if (pMinutes) pMinutes.textContent = minutes;
-            if (pSeconds) pSeconds.textContent = secondi;
-
-            // Aggiornamento della data testuale in tempo reale
-            const opzioniData = { weekday: 'long', day: 'numeric', month: 'long' };
-            let testoData = oraAttuale.toLocaleDateString('it-IT', opzioniData);
-
-            // Ora il testo rimarrà nativamente in minuscolo, esattamente come restituito dall'italiano
-            const dataDisplay = document.getElementById('apple-live-date-display');
-            if (dataDisplay) {
-                dataDisplay.textContent = testoData;
+            const elementoOrologio = document.getElementById('mac-live-clock');
+            if (elementoOrologio) {
+                elementoOrologio.textContent = stringaOrologioFinale;
             }
         }
 
-        // Avvia immediatamente l'orologio e impostalo ogni secondo
-        aggiornaTempoEData();
-        setInterval(aggiornaTempoEData, 1000);
+        // Avvio immediato e loop al secondo per mantenere l'ora sempre al passo
+        aggiornaOrologioMac();
+        setInterval(aggiornaOrologioMac, 1000);
 
         const canzoniSpotify = [
             "https://open.spotify.com/embed/track/6gHwnlBWIDostwWEHLwoEs?utm_source=generator&theme=0&si=4973abfdebf14f33", "https://open.spotify.com/embed/track/1BANPzYIhCQkJ1ZFq2Fb0O?utm_source=generator&theme=0&si=72f108afefdf42ec",
@@ -955,6 +1062,45 @@
         function chiudiFinestra(idFinestra) {
             const overlay = document.getElementById(idFinestra);
             if (overlay) { overlay.classList.remove('active'); }
+        }
+
+        function creaEffettoNo(event) {
+            // Genera 10 piccoli "no" ad ogni click
+            const numeroParticelle = 10;
+
+            // Prende la posizione esatta del mouse al momento del click
+            const clickX = event.clientX;
+            const clickY = event.clientY;
+
+            for (let i = 0; i < numeroParticelle; i++) {
+                const particella = document.createElement('div');
+                particella.className = 'no-particle';
+                particella.textContent = 'no';
+
+                // Posiziona il "no" sul cursore
+                particella.style.left = clickX + 'px';
+                particella.style.top = clickY + 'px';
+
+                // Genera traiettorie casuali verso l'alto (esplosione a fontana)
+                const direzioneX = (Math.random() - 0.5) * 160; // Spostamento a destra o sinistra
+                const direzioneY = - (Math.random() * 120 + 60); // Spinta forte verso l'alto
+                const rotazioneCasuale = (Math.random() - 0.5) * 60; // Rotazione della scritta
+
+                // Passa i valori casuali all'animazione CSS
+                particella.style.setProperty('--x', `${direzioneX}px`);
+                particella.style.setProperty('--y', `${direzioneY}px`);
+                particella.style.setProperty('--r', `${rotazioneCasuale}deg`);
+
+                // Dimensioni leggermente diverse per ogni "no" per dare profondità
+                particella.style.fontSize = (Math.random() * 6 + 14) + 'px';
+
+                document.body.appendChild(particella);
+
+                // Rimuove il "no" dal codice della pagina appena finisce l'animazione (0.8 secondi)
+                setTimeout(() => {
+                    particella.remove();
+                }, 800);
+            }
         }
     </script>
 </body>
