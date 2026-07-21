@@ -583,19 +583,26 @@
         }
 
         .mac-content {
-            height: 75vh;
+            max-height: 75vh;
+            /* Usa max-height invece di height per adattare l'altezza all'immagine */
             overflow-y: auto;
+            /* Permette lo scorrimento solo se l'immagine supera l'altezza massima */
             background: #ffffff;
-            padding: 30px;
-            padding-top: 60px;
+            padding: 0 !important;
+            /* Azzera completamente il padding su tutti i lati */
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         }
 
         .mac-content img {
             width: 100%;
             height: auto;
             display: block;
-            margin: 0 auto;
+            /* Elimina lo spazio vuoto riservato ai caratteri alfanumerici */
+            margin: 0;
+            vertical-align: bottom;
+            /* Assicura l'aderenza perfetta al margine inferiore */
             image-rendering: -webkit-optimize-contrast;
         }
 
@@ -786,7 +793,7 @@
                     <!-- Parte Bassa: Contenitore del bottone con spazio di sicurezza sul fondo -->
                     <div style="width: 100%; padding-top: 4px; display: flex; justify-content: center;">
                         <button class="mac-cta-button" onclick="apriFinestra('modal-aboutme')">
-                         <strong>  per info serie cliccare qui  </strong> 
+                            <strong> per info serie cliccare qui </strong>
                         </button>
                     </div>
 
@@ -913,7 +920,6 @@
             <div class="mac-content">
                 <img src="immagini_2/9.webp" alt="Yomi">
                 <img src="immagini_2/10.webp" alt="Yomi">
-                <img src="immagini_2/11.webp" alt="Yomi">
             </div>
         </div>
     </div>
