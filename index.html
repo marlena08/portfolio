@@ -750,7 +750,7 @@
 
                 <!-- 2. CUBOTTO GRANDE: CHI SONO -->
                 <div class="apple-about-me-widget"
-                    style="height: 280px !important; display: flex; flex-direction: column; justify-content: space-between; padding: 16px 16px 20px 16px; box-sizing: border-box; background: #1e1e1e !important; border-radius: 15px;">
+                    style="height: 240px !important; display: flex; flex-direction: column; justify-content: space-between; padding: 16px 16px 20px 16px; box-sizing: border-box; background: #1e1e1e !important; border-radius: 15px;">
 
                     <!-- Parte Alta -->
                     <div style="display: flex; gap: 14px; align-items: flex-start;">
@@ -790,12 +790,7 @@
                         </div>
                     </div>
 
-                    <!-- Parte Bassa: Contenitore del bottone con spazio di sicurezza sul fondo -->
-                    <div style="width: 100%; padding-top: 4px; display: flex; justify-content: center;">
-                        <button class="mac-cta-button" onclick="apriFinestra('modal-aboutme')">
-                            <strong> per info serie cliccare qui </strong>
-                        </button>
-                    </div>
+                    
 
                 </div>
 
@@ -844,9 +839,16 @@
         <audio id="main-audio-player"></audio>
     </div>
 
-    <!-- SEZIONE ICONE DESKTOP SU DUE COLONNE (CORRETTA) -->
+    <!-- SEZIONE ICONE DESKTOP -->
 
-    <!-- COLONNA INTERNA A SINISTRA (homizy, moku, yomi) -->
+    <!-- NUOVA COLONNA A SINISTRA (about me) -->
+    <div class="desktop-icon" style="top: 60px !important; right: 240px !important;"
+        onclick="apriFinestra('modal-aboutme')">
+        <img src="immagini_2/Apple_Notes.png" alt="about me">
+        <span>about me</span>
+    </div>
+
+    <!-- COLONNA CENTRALE / INTERNA (homizy, moku, yomi) -->
     <div class="desktop-icon" style="top: 60px !important; right: 140px !important;"
         onclick="apriFinestra('modal-homizy')">
         <img src="immagini_2/cartella.png" alt="homizy">
@@ -865,7 +867,7 @@
         <span>yomi</span>
     </div>
 
-    <!-- COLONNA ESTERNA A DESTRA (sais, jabmo, pat pat) -->
+    <!-- COLONNA DESTRA / ESTERNA (sais, jabmo, pat pat) -->
     <div class="desktop-icon" style="top: 60px !important; right: 40px !important;"
         onclick="apriFinestra('modal-sais')">
         <img src="immagini_2/cartella.png" alt="sais">
@@ -883,7 +885,6 @@
         <img src="immagini_2/cartella.png" alt="patpat">
         <span>pat pat</span>
     </div>
-
 
     <!-- SEZIONE FINESTRE POPUP (MODALI) -->
     <div id="modal-aboutme" class="modal-overlay" onclick="chiudiFinestra('modal-aboutme')">
@@ -1177,6 +1178,12 @@
                 }, 800);
             }
         }
+
+        // Apri la finestra 'about me' non appena il DOM è caricato
+        document.addEventListener('DOMContentLoaded', () => {
+            apriFinestra('modal-aboutme');
+        });
+        
     </script>
 </body>
 
